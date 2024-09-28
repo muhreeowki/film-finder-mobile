@@ -67,7 +67,7 @@ class _CreateSearchState extends State<Search> {
           ),
           backgroundColor: Theme.of(context).colorScheme.inversePrimary),
       body: Container(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Column(
           children: [
             SizedBox(
