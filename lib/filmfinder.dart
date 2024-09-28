@@ -6,6 +6,12 @@ class Filmfinder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Search());
+    return MaterialApp(
+      home: Search(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
+        useMaterial3: true,
+      ),
+    );
   }
 }

@@ -1,22 +1,32 @@
+import 'package:film_finder_mobile/models/movie.dart';
 import 'package:flutter/material.dart';
 
 class SearchResult extends StatelessWidget {
-  final String _title;
-  final String _year;
-  final String _imageURL;
+  final Movie _movie;
 
-  SearchResult(this._title, this._year, this._imageURL);
+  SearchResult(this._movie);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Text("Title: $_title"),
-          Text("Year: $_year"),
-          Text("ImageURL: $_imageURL"),
-        ],
-      ),
-    );
+    return Card(
+        color: Theme.of(context).colorScheme.inversePrimary,
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(_movie.title),
+              Text(_movie.year),
+              Text(() {
+                if (_movie.actors.isNotEmpty) {
+                  return _movie.actors.first;
+                } else {
+                  return "";
+                }
+              }())
+            ],
+          ),
+        ));
   }
 }

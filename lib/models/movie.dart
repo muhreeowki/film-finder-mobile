@@ -1,32 +1,33 @@
 class Movie {
   final String title;
   final String year;
-  final String rated;
-  final String runtime;
-  final List<String> genre;
-  final String director;
-  final String writer;
-  final List<String> actors;
-  final String plot;
+  final String? rated;
+  final String? runtime;
+  List<String> genre;
+  final String? director;
+  final String? writer;
+  List<String> actors;
+  final String? plot;
   final String poster;
-  final String imdbRating;
-  final String type;
+  final String? imdbRating;
+  final String? type;
   final bool response;
 
+  // TODO: Make these all required
   Movie({
     required this.title,
     required this.year,
-    required this.rated,
-    required this.runtime,
-    required this.genre,
-    required this.director,
-    required this.writer,
-    required this.actors,
-    required this.plot,
     required this.poster,
-    required this.imdbRating,
-    required this.type,
     required this.response,
+    this.rated,
+    this.runtime,
+    this.genre = const [],
+    this.director,
+    this.writer,
+    this.actors = const [],
+    this.plot,
+    this.imdbRating,
+    this.type,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) => Movie(
@@ -44,6 +45,6 @@ class Movie {
         poster: json['Poster'] as String,
         imdbRating: json['imdbRating'] as String,
         type: json['Type'] as String,
-        response: json['Response'] as bool,
+        response: json['Response'] == true,
       );
 }
