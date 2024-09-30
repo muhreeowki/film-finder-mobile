@@ -6,10 +6,10 @@ import 'package:film_finder_mobile/screens/search/movie_stats.dart';
 import 'package:film_finder_mobile/screens/search/movie_title.dart';
 import 'package:flutter/material.dart';
 
-class SearchResult extends StatelessWidget {
+class MovieDetails extends StatelessWidget {
   final Movie _movie;
 
-  SearchResult(this._movie);
+  MovieDetails(this._movie);
 
   @override
   Widget build(BuildContext context) {
