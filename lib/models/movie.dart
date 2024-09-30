@@ -31,26 +31,21 @@ class Movie {
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
-    if (json.isEmpty || json['Title'] is Null) {
-      throw const FormatException('Failed to load album.');
-    } else {
-      return Movie(
-        title: json['Title'] as String,
-        year: json['Year'] as String,
-        rated: json['Rated'] as String,
-        runtime: json['Runtime'] as String,
-        genre:
-            (json['Genre'] as String).split(',').map((e) => e.trim()).toList(),
-        director: json['Director'] as String,
-        writer: json['Writer'] as String,
-        actors:
-            (json['Actors'] as String).split(',').map((e) => e.trim()).toList(),
-        plot: json['Plot'] as String,
-        poster: json['Poster'] as String,
-        imdbRating: json['imdbRating'] as String,
-        type: json['Type'] as String,
-        response: json['Response'] == true,
-      );
-    }
+    return Movie(
+      title: json['Title'] as String,
+      year: json['Year'] as String,
+      rated: json['Rated'] as String,
+      runtime: json['Runtime'] as String,
+      genre: (json['Genre'] as String).split(',').map((e) => e.trim()).toList(),
+      director: json['Director'] as String,
+      writer: json['Writer'] as String,
+      actors:
+          (json['Actors'] as String).split(',').map((e) => e.trim()).toList(),
+      plot: json['Plot'] as String,
+      poster: json['Poster'] as String,
+      imdbRating: json['imdbRating'] as String,
+      type: json['Type'] as String,
+      response: json['Response'] == true,
+    );
   }
 }

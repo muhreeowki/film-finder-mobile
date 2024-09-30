@@ -6,6 +6,8 @@ import 'package:film_finder_mobile/keys.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+var emptyMovie = Movie(title: "", year: "", poster: "", response: false);
+
 class Search extends StatefulWidget {
   @override
   State<Search> createState() => _CreateSearchState();
@@ -14,16 +16,27 @@ class Search extends StatefulWidget {
 class _CreateSearchState extends State<Search> {
   // Define a mutable list of search results
   // Define a mutable string for the search query
-  Movie movie = Movie(title: "", year: "", poster: "", response: false);
+  Movie movie = emptyMovie;
+  Map<String, String> error = {};
 
   void fetchFilm(String title) async {
+    // Fetch the movie and check for errors
     http.Response res = await http.get(Uri.parse(
         "http://www.omdbapi.com/?apikey=$omdbKey&type=movie&t=$title"));
     if (res.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
+      Map<String, dynamic> movieData =
+          jsonDecode(res.body) as Map<String, dynamic>;
+      if (movieData['Error'] != null) {
+        setState(() {
+          movie = emptyMovie;
+          error['Error'] = movieData['Error'];
+        });
+        throw const FormatException();
+      }
       setState(() {
-        movie = Movie.fromJson(jsonDecode(res.body) as Map<String, dynamic>);
+        movie = Movie.fromJson(movieData);
       });
     } else {
       // If the server did not return a 200 OK response,
@@ -57,14 +70,30 @@ class _CreateSearchState extends State<Search> {
             Padding(
                 padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: FilmFinderSearchBar(fetchFilm)),
-            const SizedBox(
-              height: 20,
-            ),
             () {
               if (movie.title != "") {
                 return MovieDetails(movie);
               } else {
-                return const Text("");
+                return const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 200,
+                      ),
+                      Icon(
+                        Icons.error,
+                        size: 80,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        "No movie Found",
+                        style: TextStyle(
+                            fontSize: 40, fontWeight: FontWeight.w500),
+                      )
+                    ]);
               }
             }()
           ],
