@@ -18,7 +18,9 @@ class MovieStats extends StatelessWidget {
               }(),
               _movie.runtime,
             ].join("  •  "),
-            style: TextStyle(fontSize: 20, color: Colors.black45))
+            style: TextStyle(
+                fontSize: 20,
+                color: Theme.of(context).colorScheme.inverseSurface))
       ],
     );
   }

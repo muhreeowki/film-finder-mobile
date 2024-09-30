@@ -15,11 +15,11 @@ class MovieGenres extends StatelessWidget {
                 .map((genre) => Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                            color: Colors.black,
+                            color: Theme.of(context).colorScheme.surfaceBright,
                             style: BorderStyle.solid,
-                            width: 1.0)),
+                            width: 2.0)),
                     child: Text(genre)))
                 .toList()));
   }

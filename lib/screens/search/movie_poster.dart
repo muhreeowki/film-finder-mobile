@@ -8,9 +8,7 @@ class MoviePoster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints.expand(
-        height: 330.0,
-      ),
+      constraints: const BoxConstraints.expand(height: 400),
       child: Image.network(
         url,
         fit: BoxFit.cover,

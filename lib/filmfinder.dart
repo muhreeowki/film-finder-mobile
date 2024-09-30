@@ -9,9 +9,15 @@ class Filmfinder extends StatelessWidget {
     return MaterialApp(
       home: Search(),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
         useMaterial3: true,
+        colorSchemeSeed: const Color.fromRGBO(86, 80, 80, 171),
       ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        colorSchemeSeed: const Color.fromRGBO(86, 80, 80, 171),
+      ),
+      themeMode: ThemeMode.dark,
     );
   }
 }

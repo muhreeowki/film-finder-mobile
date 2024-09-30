@@ -30,7 +30,11 @@ class Movie {
     this.type,
   });
 
-  factory Movie.fromJson(Map<String, dynamic> json) => Movie(
+  factory Movie.fromJson(Map<String, dynamic> json) {
+    if (json.isEmpty || json['Title'] is Null) {
+      throw const FormatException('Failed to load album.');
+    } else {
+      return Movie(
         title: json['Title'] as String,
         year: json['Year'] as String,
         rated: json['Rated'] as String,
@@ -47,4 +51,6 @@ class Movie {
         type: json['Type'] as String,
         response: json['Response'] == true,
       );
+    }
+  }
 }
